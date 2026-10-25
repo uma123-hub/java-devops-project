@@ -22,12 +22,23 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh '''
-                    mvn sonar:sonar \
-                    -Dsonar.projectKey=java-devops-project
-                    '''
+                    sh """
+                        mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+                        -Dsonar.projectKey=java-devops-project
+                    """
                 }
             }
+        }
+
+    }
+
+    post {
+        success {
+            echo 'Build and SonarQube Scan Successful'
+        }
+
+        failure {
+            echo 'Pipeline Failed'
         }
     }
 }
