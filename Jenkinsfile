@@ -31,6 +31,12 @@ pipeline {
         }
 
     }
+    stage('Docker Build') {
+            steps {
+                sh 'docker build -t java-devops-project .'
+            }
+        }
+    }
 
     post {
         success {
