@@ -36,7 +36,6 @@ pipeline {
                 sh 'docker build -t java-devops-project .'
             }
         }
-    }
 
     post {
         success {
