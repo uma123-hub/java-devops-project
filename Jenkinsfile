@@ -18,5 +18,16 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                    mvn sonar:sonar \
+                    -Dsonar.projectKey=java-devops-project
+                    '''
+                }
+            }
+        }
     }
 }
