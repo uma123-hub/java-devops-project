@@ -29,7 +29,7 @@ pipeline {
 
         stage('SonarQube Scan') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('sonar') {
                     sh '''
                     mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.8.0.7211:sonar \
                     -Dsonar.projectKey=java-devops-project
